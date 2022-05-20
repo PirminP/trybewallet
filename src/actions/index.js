@@ -7,7 +7,7 @@ export const currencyRequest = () => ({ type: CURRENCY_REQUEST });
 export const currencyGet = (currArray) => ({ type: CURRENCY_GET, payload: currArray });
 
 export function fetchAPICurrency() {
-  return async (dispatch) => { // call thunk
+  return async (dispatch) => {
     dispatch(currencyRequest());
     const returnAPI = await fetch('https://economia.awesomeapi.com.br/json/all');
     const dataAPI = await returnAPI.json();
