@@ -1,9 +1,9 @@
+import expensesTotal from '../pages/expensesTotal';
 import {
   CURRENCY_REQUEST,
   CURRENCY_GET,
   EXPENSES_SAVE,
   EXPENSES_TOTAL } from '../actions';
-import expensesTotal from '../tests/helpers/expensesTotal';
 
 const INITIAL_STATE = {
   currencies: [],
