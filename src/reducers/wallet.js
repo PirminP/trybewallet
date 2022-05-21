@@ -1,8 +1,14 @@
-import { CURRENCY_REQUEST, CURRENCY_GET } from '../actions';
+import {
+  CURRENCY_REQUEST,
+  CURRENCY_GET,
+  EXPENSES_SAVE,
+  EXPENSES_TOTAL } from '../actions';
+import expensesTotal from '../tests/helpers/expensesTotal';
 
 const INITIAL_STATE = {
   currencies: [],
   expenses: [],
+  total: 0,
 };
 
 function wallet(state = INITIAL_STATE, action) {
@@ -11,6 +17,10 @@ function wallet(state = INITIAL_STATE, action) {
     return state;
   case CURRENCY_GET:
     return { ...state, currencies: action.payload };
+  case EXPENSES_SAVE:
+    return { ...state, expenses: [...state.expenses, action.payload] };
+  case EXPENSES_TOTAL:
+    return { ...state, total: expensesTotal(state.expenses) };
   default:
     return state;
   }
