@@ -1,6 +1,6 @@
 # Project TrybeWallet
 
-#### This website..
+#### This website consists of an expense control wallet with currency converter, where the user is able to add an expense, view table containing all expenses and total expenses conterted into Brazilian real.
 
 * Designed by using React, Redux, BrowserRouter & CSS3
 
