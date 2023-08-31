@@ -2,6 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAPICurrencyList } from '../actions';
+import './Form.css';
 
 class Form extends React.Component {
   constructor() {
@@ -44,89 +45,95 @@ class Form extends React.Component {
     } = this.state;
 
     return (
-      <form>
-        <label htmlFor="valueExpense">
-          Valor:
-          <input
-            id="valueExpense"
-            type="number"
-            data-testid="value-input"
-            value={ valueExpense }
-            onChange={ this.handleInputChange }
-          />
-        </label>
-
-        <label htmlFor="descriptionExpense">
-          Descrição:
-          <input
-            id="descriptionExpense"
-            type="text"
-            data-testid="description-input"
-            value={ descriptionExpense }
-            onChange={ this.handleInputChange }
-          />
-
-        </label>
-        <label htmlFor="currencySelected">
-          Moeda
-          <select
-            id="currencySelected"
-            value={ currencySelected }
-            onChange={ this.handleInputChange }
+      <section className="expense-form-container">
+        <form className="form-group">
+          <label htmlFor="valueExpense">
+            Valor:
+            <input
+              className="form-control"
+              id="valueExpense"
+              type="number"
+              data-testid="value-input"
+              value={ valueExpense }
+              onChange={ this.handleInputChange }
+            />
+          </label>
+          <label htmlFor="descriptionExpense">
+            Descrição:
+            <input
+              className="form-control"
+              id="descriptionExpense"
+              type="text"
+              data-testid="description-input"
+              value={ descriptionExpense }
+              onChange={ this.handleInputChange }
+            />
+          </label>
+          <label htmlFor="currencySelected">
+            Moeda
+            <select
+              className="form-control"
+              id="currencySelected"
+              value={ currencySelected }
+              onChange={ this.handleInputChange }
+            >
+              {selectCurrency.map((currencies, i) => (
+                <option key={ i } value={ currencies }>
+                  { currencies }
+                </option>
+              ))}
+            </select>
+          </label>
+          <label htmlFor="paymentMethod">
+            Método de pagamento:
+            <select
+              className="form-control"
+              id="paymentMethod"
+              data-testid="method-input"
+              value={ paymentMethod }
+              onChange={ this.handleInputChange }
+            >
+              <option value="Dinheiro">Dinheiro</option>
+              <option value="Cartão de crédito">Cartão de crédito</option>
+              <option value="Cartão de débito">Cartão de débito</option>
+            </select>
+          </label>
+          <label htmlFor="categoryExpense">
+            Categoria:
+            <select
+              className="form-control"
+              id="categoryExpense"
+              data-testid="tag-input"
+              value={ categoryExpense }
+              onChange={ this.handleInputChange }
+            >
+              <option value="Alimentação">Alimentação</option>
+              <option value="Lazer">Lazer</option>
+              <option value="Trabalho">Trabalho</option>
+              <option value="Transporte">Transporte</option>
+              <option value="Saúde">Saúde</option>
+            </select>
+          </label>
+        </form>
+        <aside>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={ () => {
+              expenseSave({
+                value: valueExpense,
+                description: descriptionExpense,
+                currency: currencySelected,
+                method: paymentMethod,
+                tag: categoryExpense,
+              }, IdToBe);
+              this.formResetToInicial();
+            } }
           >
-            {selectCurrency.map((currencies, i) => (
-              <option key={ i } value={ currencies }>
-                { currencies }
-              </option>
-            ))}
-          </select>
-        </label>
-
-        <label htmlFor="paymentMethod">
-          Método de pagamento:
-          <select
-            id="paymentMethod"
-            data-testid="method-input"
-            value={ paymentMethod }
-            onChange={ this.handleInputChange }
-          >
-            <option value="Dinheiro">Dinheiro</option>
-            <option value="Cartão de crédito">Cartão de crédito</option>
-            <option value="Cartão de débito">Cartão de débito</option>
-          </select>
-        </label>
-        <label htmlFor="categoryExpense">
-          Categoria:
-          <select
-            id="categoryExpense"
-            data-testid="tag-input"
-            value={ categoryExpense }
-            onChange={ this.handleInputChange }
-          >
-            <option value="Alimentação">Alimentação</option>
-            <option value="Lazer">Lazer</option>
-            <option value="Trabalho">Trabalho</option>
-            <option value="Transporte">Transporte</option>
-            <option value="Saúde">Saúde</option>
-          </select>
-        </label>
-
-        <button
-          type="button"
-          onClick={ () => {
-            expenseSave({
-              value: valueExpense,
-              description: descriptionExpense,
-              currency: currencySelected,
-              method: paymentMethod,
-              tag: categoryExpense,
-            }, IdToBe);
-            this.formResetToInicial();
-          } }
-        >
-          Adicionar despesa
-        </button>
-      </form>
+            Adicionar despesa
+          </button>
+        </aside>
+      </section>
     );
   }
 }

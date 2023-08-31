@@ -1,22 +1,24 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import './Header.css';
 
 class Header extends React.Component {
   render() {
     const { EmailUser, totalSpend } = this.props;
     return (
-      <header>
-        <div>
-          <p>
+      <header className="wallet-header">
+        <h3>Hoi, Wallet!</h3>
+        <div className="wallet-header-div">
+          <h5>
             Email:
             <span data-testid="email-field">{EmailUser}</span>
-          </p>
-          <p>
+          </h5>
+          <h5>
             Despesa Total:
             <span data-testid="total-field">{ totalSpend || 0 }</span>
             <span data-testid="header-currency-field">BRL</span>
-          </p>
+          </h5>
         </div>
       </header>
     );

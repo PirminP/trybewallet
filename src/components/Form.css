@@ -1,0 +1,23 @@
+.expense-form-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-block: 30px;
+}
+
+.expense-form-container form {
+  align-items: flex-end;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.form-group label {
+  font-size: 20px;
+}
+
+.expense-form-container aside {
+  align-items: flex-end;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
